@@ -11,13 +11,17 @@ import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'hello',
-  template: `<div *ngFor="let city of data$ | async as data">
+  template: `<input [(ngModel)]="search" (ngModelChange)="searchChange()"/>
+    <div *ngFor="let city of data$ | async as data">
   <h3>
-    {{city?.title}} 
+    {{city?.title}}
   </h3>
 </div>`,
   styles: [`h1 { font-family: Lato; }`]
 })
+
+
+
 export class HelloComponent implements OnChanges {
   @Input() search: string;
   data$: Observable<City[]>;
