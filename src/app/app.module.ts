@@ -12,7 +12,7 @@ import { JsonpModule } from '@angular/http';
 
 const appRoutes: Routes = [
   { path: 'city/:id', component : CityComponent},
-  { path: '', component: AppComponent }
+  { path: '', component: HelloComponent }
 ];
 
 @NgModule({

@@ -1,33 +1,10 @@
-<<<<<<< HEAD
-<router-outlet>
-
-  </router-outlet>
 
 
-=======
->>>>>>> 1cfa3cc7eb308c54eab6a1a3ce035a2815cdc925
-<input [(ngModel)]="search" (ngModelChange)="searchChange()"/>
-<hello [search]="search"></hello>
-<br>
-<<<<<<< HEAD
-
-<h3>Résultats de la recherche pour {{ search }} </h3>
+<router-outlet></router-outlet>
 
 
-<br>
 
-<div *ngFor="let city of filteredCities$ | async as data">
-  <h3>
-    <a [routerLink]="['/city', city.title]">
-      <div style="border : 1px solid grey;cursor:pointer" (click)="clickItem">
-        {{city?.title}} {{city?.latt_long}}
-      </div>
-    </a>
 
-  </h3>
-</div>
-=======
->>>>>>> 1cfa3cc7eb308c54eab6a1a3ce035a2815cdc925
 <!-- <div *ngFor="let city of data$ | async as data">
   <h3>
     {{city?.title}} {{city?.latt_long}}
