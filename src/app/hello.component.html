@@ -1,0 +1,11 @@
+
+
+<input [(ngModel)]="search" (ngModelChange)="searchChange()"/>
+    <div *ngFor="let city of data$ | async as data">
+
+  <h3>
+    <a [routerLink]="['/city', city.woeid]">{{city.title}}</a>
+
+
+  </h3>
+</div>

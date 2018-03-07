@@ -11,13 +11,7 @@ import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'hello',
-  template: `<input [(ngModel)]="search" (ngModelChange)="searchChange()"/>
-    <div *ngFor="let city of data$ | async as data">
-
-  <h3>
-    {{city?.title}}
-  </h3>
-</div>`,
+  templateUrl: './hello.component.html',
   styles: [`h1 { font-family: Lato; }`]
 })
 

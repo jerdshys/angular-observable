@@ -6,6 +6,8 @@ import "rxjs/add/operator/map";
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/debounceTime';
 import * as _ from 'underscore';
+import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'my-app',
@@ -15,7 +17,9 @@ import * as _ from 'underscore';
 })
 export class CityComponent implements OnInit  {
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
+    this.route.params.subscribe( params => console.log(params.id) );
+
   }
 
   ngOnInit() {
