@@ -11,6 +11,7 @@ export class ApiService {
   public searchByLatLong(lat,long) {
     console.log('LONG', long)
     console.log('LAT', lat)
+
     this.httpClient.get('https://www.metaweather.com/api/location/search/?lattlong=50.068,-5.316').map(
       // Renvoie le tableau de city
       (data: any) =>data
