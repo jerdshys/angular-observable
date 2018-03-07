@@ -1,19 +1,6 @@
-
-
 <input [(ngModel)]="search" (ngModelChange)="searchChange()"/>
+<hello [search]="search"></hello>
 <br>
-
-<h3>Résultats de la recherche pour {{ search }} </h3>
-
-
-<br>
-
-<div *ngFor="let city of filteredCities$ | async as data">
-  <h3>
-    {{city?.title}} {{city?.latt_long}}
-  </h3>
-  {{city | json}}
-</div>
 <!-- <div *ngFor="let city of data$ | async as data">
   <h3>
     {{city?.title}} {{city?.latt_long}}
