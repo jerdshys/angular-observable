@@ -6,11 +6,14 @@ import "rxjs/add/operator/map";
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/debounceTime';
 import * as _ from 'underscore';
+import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  styleUrls: [ './app.component.css' ],
+  providers: [ApiService]
+
 })
 export class AppComponent implements OnInit  {
   search: string;
@@ -19,10 +22,12 @@ export class AppComponent implements OnInit  {
   data$: Observable<City>;
   filteredCities$: Observable<City[]>;
   categories$: Observable<string[]>;
+  apiService:ApiService;
 
-  constructor(
-    private httpClient: HttpClient,
-  ) {}
+  constructor( apiService : ApiService, httpClient : HttpClient ) {
+    this.apiService = apiService;
+    this.httpClient = httpClient;
+  }
 
   ngOnInit() {
     this.data$ = this.httpClient.get('https://www.metaweather.com/api/location/search/?lattlong=50.068,-5.316').map(
@@ -42,19 +47,9 @@ export class AppComponent implements OnInit  {
     }
   );
 
-//   this.data$ = this.apiService.searchByLatLong(36.96,-122.02)
-//   // Renvoie le tableua des planètes avec les terrains sous forme de tableau
-//   .map(
-//   (cities: any[]) => {
-//     cities = cities.map(
-//       (city: City) => {
-//           city.title = city.title;
-//         return city;
-//       }
-//     );
-//     return cities;
-//   }
-// );
+  // // Renvoie le tableua des planètes avec les terrains sous forme de tableau
+  // this.data$ = this.apiService.searchByLatLong(36.96,-122.02);
+  // console.log(this.data$)
 
 
   this.filteredCities$ = Observable.combineLatest(this.data$, this.onSearchChange$,
