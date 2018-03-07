@@ -13,10 +13,10 @@ export class ApiService {
     console.log('LAT', lat)
     this.httpClient.get('https://www.metaweather.com/api/location/search/?lattlong=50.068,-5.316').map(
       // Renvoie le tableau de city
-      (data: any) => this.data
+      (data: any) =>data
     )
     console.log("data "+this.data);
-    return data;
+    return this.data;
 
     // Renvoie le table
     //

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {City} from './city.model';
 import "rxjs/add/operator/map";
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/debounceTime';
@@ -13,10 +14,10 @@ import * as _ from 'underscore';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent implements OnInit  {
-  search: string;
+  search: string ='';
   name = 'Angular 5';
   onSearchChange$: BehaviorSubject<string> = new BehaviorSubject('');
-  data$: Observable<City>;
+  data$: Observable<City[]>;
   filteredCities$: Observable<City[]>;
   categories$: Observable<string[]>;
 
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit  {
   ) {}
 
   ngOnInit() {
-    this.data$ = this.httpClient.get('https://www.metaweather.com/api/location/search/?lattlong=50.068,-5.316').map(
+    this.data$ = this.httpClient.get('https://www.metaweather.com/api/location/search/?query='+this.search+'').map(
       // Renvoie le tableau de city
       (data: any) => data
     )
@@ -69,7 +70,7 @@ export class AppComponent implements OnInit  {
   this.categories$ = this.data$.map(
       cities => {
         let categories = cities.map(
-          city => city.terrains
+          city => city.title
         );
         return _.uniq(_.flatten(categories));
       }
@@ -77,7 +78,7 @@ export class AppComponent implements OnInit  {
   }
 
   public updateFilteredPlanets(title: string) {
-    this.filteredPlanets$ = this.data$.map(
+    this.filteredCities$ = this.data$.map(
       (cities) => cities.filter(
         city => (city.title === title)
       )

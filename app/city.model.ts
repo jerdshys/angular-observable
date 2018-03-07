@@ -1,7 +1,7 @@
 export interface City {
-  "distance": integer,
+  "distance": number,
   "title": string,
   "location_type": string,
-  "woeid": integer,
+  "woeid": number,
   "latt_long": string
 }
