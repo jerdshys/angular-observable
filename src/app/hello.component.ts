@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
@@ -13,6 +13,7 @@ import 'rxjs/add/operator/debounceTime';
   selector: 'hello',
   template: `<input [(ngModel)]="search" (ngModelChange)="searchChange()"/>
     <div *ngFor="let city of data$ | async as data">
+
   <h3>
     {{city?.title}}
   </h3>
@@ -20,10 +21,8 @@ import 'rxjs/add/operator/debounceTime';
   styles: [`h1 { font-family: Lato; }`]
 })
 
-
-
-export class HelloComponent implements OnChanges {
-  @Input() search: string;
+export class HelloComponent implements OnInit {
+   search: string ='';
   data$: Observable<City[]>;
 
 
@@ -31,20 +30,27 @@ export class HelloComponent implements OnChanges {
     private httpClient: HttpClient,
   ) {}
 
-  ngOnChanges(){
-    this.data$ = this.httpClient.get('https://www.metaweather.com/api/location/search/?query='+this.search+'').map(
-      // Renvoie le tableau de city
-      (data: any) => data
-    )
-    .map(
-    (cities: any[]) => {
-      cities = cities.map(
-        (city: City) => {
-            city.title = city.title;
-          return city;
-        }
-      );
-      return cities;
-    }
-  );  }
+  ngOnInit(){
+
+  }
+
+public searchChange() {
+  console.log("onSearchChange")
+  this.data$ = this.httpClient.get('https://www.metaweather.com/api/location/search/?query='+this.search+'').map(
+    // Renvoie le tableau de city
+    (data: any) => data
+  )
+  .map(
+  (cities: any[]) => {
+    cities = cities.map(
+      (city: City) => {
+          city.title = city.title;
+        return city;
+      }
+    );
+    return cities;
+  }
+);
+}
+
 }
