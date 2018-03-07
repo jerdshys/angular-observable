@@ -23,8 +23,13 @@ export class AppComponent implements OnInit  {
   data$: Observable<City[]>;
   filteredCities$: Observable<City[]>;
   categories$: Observable<string[]>;
+<<<<<<< HEAD
   apiService:ApiService
   httpCLient:HttpClient
+=======
+  apiService:ApiService;
+  httpClient : HttpClient;
+>>>>>>> 31c4d84cf64faa80d7eb5873762037104ae443d3
 
   constructor( apiService : ApiService, httpClient : HttpClient ) {
     this.apiService = apiService;
