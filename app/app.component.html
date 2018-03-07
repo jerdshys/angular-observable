@@ -1,3 +1,6 @@
+<router-outlet>
+
+  </router-outlet>
 
 
 <input [(ngModel)]="search" (ngModelChange)="searchChange()"/>
@@ -10,9 +13,13 @@
 
 <div *ngFor="let city of filteredCities$ | async as data">
   <h3>
-    {{city?.title}} {{city?.latt_long}}
+    <a [routerLink]="['/city', city.title]">
+      <div style="border : 1px solid grey;cursor:pointer" (click)="clickItem">
+        {{city?.title}} {{city?.latt_long}}
+      </div>
+    </a>
+
   </h3>
-  {{city | json}}
 </div>
 <!-- <div *ngFor="let city of data$ | async as data">
   <h3>

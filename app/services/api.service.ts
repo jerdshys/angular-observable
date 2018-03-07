@@ -11,12 +11,21 @@ export class ApiService {
   public searchByLatLong(lat,long) {
     console.log('LONG', long)
     console.log('LAT', lat)
-    this.httpClient.get('https://www.metaweather.com/api/location/search/?lattlong=50.068,-5.316').map(
-      // Renvoie le tableau de city
-      (data: any) => this.data
-    )
-    console.log("data "+this.data);
-    return data;
+    this.data = this.httpClient.get('https://www.metaweather.com/api/location/search/?lattlong=50.068,-5.316').map(
+        // Renvoie le tableau de city
+        (data: any) => this.data
+    ).map(
+        (cities: any[]) => {
+          cities = cities.map(
+            (city: City) => {
+                city.title = city.title;
+              return city;
+            }
+          );
+          console.log("cities "+cities)
+          return cities;
+        });
+
 
     // Renvoie le table
     //
