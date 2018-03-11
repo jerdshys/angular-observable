@@ -13,16 +13,27 @@ import {ActivatedRoute} from "@angular/router";
   selector: 'my-app',
   templateUrl: './city.component.html',
   styleUrls: [ './city.component.css' ],
-
 })
+
 export class CityComponent implements OnInit  {
+  id:String;
+  city:Object;
+  httpClient:HttpClient;
+  data$: Observable<Any>;
 
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe( params => console.log(params.id) );
-
+  constructor(private route: ActivatedRoute, httpClient : HttpClient) {
+    this.route.params.subscribe( (params => this.id = params.id; );
+    this.httpClient = httpClient;
   }
 
   ngOnInit() {
+    console.log("init "+this.id):
+    this.httpClient.get('https://www.metaweather.com/api/location/'+this.id+'').subscribe((response: Response) => {
+      console.log(response);
+      this.city = response;
+
+   });
+
     console.log("hello city component")
   }
 

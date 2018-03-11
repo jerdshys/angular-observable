@@ -12,7 +12,7 @@ import 'rxjs/add/operator/debounceTime';
 @Component({
   selector: 'hello',
   templateUrl: './hello.component.html',
-  styles: [`h1 { font-family: Lato; }`]
+  styleUrls: [ './hello.component.css' ],
 })
 
 export class HelloComponent implements OnInit {
@@ -27,6 +27,10 @@ export class HelloComponent implements OnInit {
   ngOnInit(){
 
   }
+
+public setHemisphere(value) {
+  
+}
 
 public searchChange() {
   console.log("onSearchChange")
