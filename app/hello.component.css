@@ -1,0 +1,42 @@
+#panel {
+  float: left;
+  width : 30%;
+}
+
+#body {
+  float: left;
+  width : 70%;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+.search {
+  width : 300px;
+  height : 30px;
+  border-radius : 15px;
+  padding-left: 10px;
+  box-shadow: none;
+  border: none;
+  margin : auto;
+}
+
+.searchResults {
+  padding-top : 40px;
+}
+
+.item {
+  width : 100%;
+  font-size: 16px;
+}
+
+
+.itemLink {
+  color : white !important;
+  text-decoration: none !important;
+}
+
+.itemLink:hover {
+  color : #E2E2E2 !important;
+}
