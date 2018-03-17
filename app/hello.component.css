@@ -1,11 +1,13 @@
 #panel {
   float: left;
+  text-align: center !important;
   width : 30%;
+  padding-left: 30px;
 }
 
 #body {
   float: left;
-  width : 70%;
+  width : 65%;
 }
 
 h1 {
@@ -24,6 +26,8 @@ h1 {
 
 .searchResults {
   padding-top : 40px;
+  width : 33%;
+  float: left;
 }
 
 .item {
@@ -39,4 +43,17 @@ h1 {
 
 .itemLink:hover {
   color : #E2E2E2 !important;
+}
+
+.button {
+  text-align: center;
+  border : 1px solid white;
+  width: 50px;
+  margin: auto;
+  cursor: pointer;
+  padding : 5px;
+}
+
+.button:hover {
+  background: rgba(255,255,255,0.3);
 }

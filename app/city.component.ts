@@ -7,6 +7,7 @@ import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/debounceTime';
 import * as _ from 'underscore';
 import {ActivatedRoute} from "@angular/router";
+import {City} from './city.model'
 
 
 @Component({
@@ -19,19 +20,20 @@ export class CityComponent implements OnInit  {
   id:String;
   city:Object;
   httpClient:HttpClient;
-  data$: Observable<Any>;
+  data$: Observable<City>;
+  interval$ : Observable.interval(1000)
+
+  interval$.subscribe(i => console.log( i ))
 
   constructor(private route: ActivatedRoute, httpClient : HttpClient) {
-    this.route.params.subscribe( (params => this.id = params.id; );
+    this.id = this.route.snapshot.paramMap.get('id'));
     this.httpClient = httpClient;
   }
 
   ngOnInit() {
-    console.log("init "+this.id):
     this.httpClient.get('https://www.metaweather.com/api/location/'+this.id+'').subscribe((response: Response) => {
       console.log(response);
       this.city = response;
-
    });
 
     console.log("hello city component")
