@@ -17,74 +17,20 @@ import { ApiService } from './services/api.service';
 
 })
 export class AppComponent implements OnInit  {
-  search: string ='';
-  name = 'Angular 5';
-  onSearchChange$: BehaviorSubject<string> = new BehaviorSubject('');
-  data$: Observable<City[]>;
-  filteredCities$: Observable<City[]>;
-  categories$: Observable<string[]>;
-  apiService:ApiService
-  httpClient:HttpClient
 
-  constructor( apiService : ApiService, httpClient : HttpClient ) {
-    this.apiService = apiService;
-    this.httpClient = httpClient;
+
+  constructor( ) {
   }
 
   ngOnInit() {
-    this.data$ = this.httpClient.get('https://www.metaweather.com/api/location/search/?query='+this.search+'').map(
-      // Renvoie le tableau de city
-      (data: any) => data
-    )
-    // Renvoie le tableua des planètes avec les terrains sous forme de tableau
-    .map(
-    (cities: any[]) => {
-      cities = cities.map(
-        (city: City) => {
-            city.title = city.title;
-          return city;
-        }
-      );
-      return cities;
-    }
-  );
+
+  }
 
   // // Renvoie le tableua des planètes avec les terrains sous forme de tableau
   // this.data$ = this.apiService.searchByLatLong(36.96,-122.02);
   // console.log(this.data$)
 
 
-  this.filteredCities$ = Observable.combineLatest(this.data$, this.onSearchChange$,
-    (cities, searchText) => {
-      console.log('observable update', searchText);
-      return cities.filter(
-        city => city.title.includes(searchText)
-      )
-    }
-  );
-
-  this.categories$ = this.data$.map(
-      cities => {
-        let categories = cities.map(
-          city => city.title
-        );
-        return _.uniq(_.flatten(categories));
-      }
-    );
-  }
-
-  public updateFilteredPlanets(title: string) {
-    this.filteredCities$ = this.data$.map(
-      (cities) => cities.filter(
-        city => (city.title === title)
-      )
-    );
-  }
-
-  public searchChange() {
-    console.log("onSearchChange")
-    this.onSearchChange$.next(this.search);
-  }
 
 
 }
