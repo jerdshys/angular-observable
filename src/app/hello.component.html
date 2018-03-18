@@ -1,10 +1,16 @@
 <div id="panel">
   Filtres :
   <br><br><br>
-  <h3>Hemisphere
-  </h3>
-  <div class="north" [ngStyle]="hemisphere && {'background-color': 'rgba(255,255,255,0.3)'}">Nord</div>
-  <div class="south" [ngStyle]="!hemisphere && {'background-color': 'rgba(255,255,255,0.3)'}">Sud</div>
+  <h3>Hemisphere</h3>
+  <div class="nord" [ngStyle]="hemisphere==='nord' && {'background-color': 'rgba(255,255,255,0.3)'}">Nord</div>
+  <div class="sud" [ngStyle]="hemisphere==='sud' && {'background-color': 'rgba(255,255,255,0.3)'}">Sud</div>
+
+  <br><br><br>
+  <h3>Latitude</h3>
+  <div class="europe" [ngStyle]="region==='europe' && {'background-color': 'rgba(255,255,255,0.3)'}">Europe</div>
+  <div class="asie" [ngStyle]="region==='asie' && {'background-color': 'rgba(255,255,255,0.3)'}">Asie</div>
+  <div class="amerique" [ngStyle]="region==='amerique' && {'background-color': 'rgba(255,255,255,0.3)'}">Amerique</div>
+
 </div>
 
 

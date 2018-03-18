@@ -21,12 +21,12 @@ export class CityComponent implements OnInit  {
   city:Object;
   httpClient:HttpClient;
   data$: Observable<City>;
-  interval$ : Observable.interval(1000)
-
-  interval$.subscribe(i => console.log( i ))
+  // interval$ : Observable.interval(1000)
+  //
+  // interval$.subscribe(i => console.log( i ))
 
   constructor(private route: ActivatedRoute, httpClient : HttpClient) {
-    this.id = this.route.snapshot.paramMap.get('id'));
+    this.id = this.route.snapshot.paramMap.get('id');
     this.httpClient = httpClient;
   }
 
