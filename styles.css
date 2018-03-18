@@ -1,9 +1,0 @@
-/* Add application styles & imports to this file! */
-
-body {
-  height: 100%;
-  width: 100%;
-  background-image: url("/assets/weather-wallpaper.jpg") !important;
-  background-size:cover !important;
-background-attachment: fixed !important;
-}
